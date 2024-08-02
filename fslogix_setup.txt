@@ -1,0 +1,93 @@
+Configuring FS Logix for User Profile Management
+-----------------------------------------------------------------------
+1. Create storage Account and configure a File Share for storing user profiles.
+-------------------------------------------------------------------------------
+2. https://github.com/Azure-Samples/azure-files-samples/releases
+Download the AzFilesHybrid.zip file from the above URL and paste to the 
+Domain controller and Unzip the file now open the PowerShell ISE
+---------------------------------------------------------------------------------
+3. https://github.com/microsoft/MCW-Implementing-Azure-Virtual-Desktop-in-the-enterprise/blob/main/Hands-on%20lab/HOL%20step-by-step%20-%20Implementing%20Azure%20Virtual%20Desktop%20in%20the%20enterprise.md
+-----------------------------------------------------------------------------
+4.Run the following commands in Powershell
+
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
+Navigate to where you unzipped the AzFilesHybrid
+cd C:\Users\ADAdmin\Documents\AzFilesHybrid\AzFilesHybrid
+Install-Module -Name Az -Scope CurrentUser
+.\CopyToPSPath.ps1
+Import-Module -Name AzFilesHybrid
+Connect-AzAccount
+-----------------------------------------
+$SubscriptionId = "0e008d6d-3edb-47fa-90ce-8bf1f19091df"
+$ResourceGroupName = "AD-Connect-RG"
+$StorageAccountName = "prostorageaccfs"
+----------------------------------------------------
+Select-AzSubscription -SubscriptionId $SubscriptionId
+Join-AzStorageAccount -ResourceGroupName $ResourceGroupName -StorageAccountName $StorageAccountName
+-----------------------------------------------------------------------------------
+Confirm the object was created successfully in Active Directory Users and Computers 
+by going to Domain controllers and looking for the computer object for the Azure storage account.
+-------------------------------------------------------------------------------------------------------
+$storageaccount = Get-AzStorageAccount -ResourceGroupName $ResourceGroupName -Name $StorageAccountName
+------------------------------------------------------------------------------------------------------
+Confirm activation with your domain by navigating to the Azure portal, going to the storage account, 
+and selecting Files shares under Data storage. Refer to the File share settings to see Configured 
+on Active Directory (AD).
+------------------------------------------------------------------------------------------------
+5. Assigned Permissions at the File Share Level
+1. Storage File Data SMB Share Contributor
+2. Storage File Data SMB Share Elevated Contributor
+-----------------------------------------------------------------------------------------------
+6. # Mount the file share as super user with storage account key
+
+#Define parameters
+$StorageAccountName = "prostorageaccfs"
+$ShareName = "fs-fshare"
+$StorageAccountKey = "TN6fLEKRQlP+gkjqwC2Xc0oBt6M16F0abIGItMUsiMHiT2N2XrwqKVGAR0VIZ3wgYTPLcbop/7Vx+AStH89NRQ=="
+
+#  Run the code below to test the connection and mount the share
+Test-NetConnection -ComputerName "$StorageAccountName.file.core.windows.net" -Port 445
+
+# Mount the storage account with the storage account key
+net use T: "\\$StorageAccountName.file.core.windows.net\$ShareName" /user:Azure\$StorageAccountName $StorageAccountKey /persistent:no
+
+
+# Path to the file share
+# Replace storage account name and share name with your settings
+# "\\prostorageaccfs.file.core.windows.net\fs-fshare"
+----------------------------------------------------------------------------------------
+7.Configuring FS Logix through Group Policy Management
+Before configuring the FS Logix Group Policy for user profile management, you need to import 
+the FS Logix ADMX and ADML templates using the following URL: https://aka.ms/fslogix_download 
+
+After importing the Templates, we need to create a GPO for setting up  
+the FS Logix and assigning it to the Session Host.
+
+Create new GPO FsLogix 
+Policies --> Fslogix
+
+Profile Container --> Enabled
+VHD Locations
+Size in MBs-->20000
+Delete Local profile when vhd
+
+now open container and directory
+naming --flip flop directory naming enabled
+volume type vhd or vhdx 
+--------------------------------------------------------------------------
+8. install the fslogix setup on session host machines
+------------------------------------------------------------------------
+9. Configuration for Intune Join 
+
+Assigning License to user
+assigning virtual machine user login role at resource group level to users
+Assigning the parameters in host pool under the RDP Properties--> enablerdsaadauth:i:1;targetisaadjoined:i:1
+
+
+
+
+
+
+
+
+
