@@ -14,6 +14,14 @@ URL for Installing the AVD Agents:
 --------------------------------------------------------------------------------------
 https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RWrmXv                                                                 
 https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RWrxrH
+-------------------------------------------------------------------------------------
+Troubleshoot common Azure Virtual Desktop Agent issues:
+https://learn.microsoft.com/en-us/azure/virtual-desktop/troubleshoot-agent#error-session-host-vms-are-stuck-in-upgrading-state
+--------------------------------------------------------------------------------------------------------------------------------
+Reinstall the agent and boot loader:
+https://learn.microsoft.com/en-us/azure/virtual-desktop/troubleshoot-agent#step-4-reinstall-the-agent-and-boot-loader
+
+
 
 
 
