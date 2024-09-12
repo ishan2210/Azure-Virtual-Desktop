@@ -1,0 +1,4 @@
+icacls \\fslogixstrgavdpoc.file.core.windows.net\fslogix-fshare\UsersVHD
+ 
+icacls "\\fslogixstrgavdpoc.file.core.windows.net\fslogix-fshare\UsersVHD" /remove:g "PCHASE\AzureRDP"
+icacls "\\fslogixstrgavdpoc.file.core.windows.net\fslogix-fshare\UsersVHD" /grant "PCHASE\AzureRDP:(OI)(CI)(F)"
