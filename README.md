@@ -6,6 +6,8 @@ AVD Accelarator: https://github.com/Azure/avdaccelerator
 ---------------------------------------------------------------------------------------
 URL for Accessing AVD Session: aka.ms/avdweb
 --------------------------------------------------------------------------------------
+URL for downloading RD Client App: https://go.microsoft.com/fwlink/?linkid=2139369 
+--------------------------------------------------------------------------------------
 URL for downloading FSLogix: aka.ms/fslogix_download
 --------------------------------------------------------------------------------------
 URL for Installing the AVD Agents:
