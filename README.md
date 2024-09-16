@@ -20,6 +20,11 @@ https://learn.microsoft.com/en-us/azure/virtual-desktop/troubleshoot-agent#error
 --------------------------------------------------------------------------------------------------------------------------------
 Reinstall the agent and boot loader:
 https://learn.microsoft.com/en-us/azure/virtual-desktop/troubleshoot-agent#step-4-reinstall-the-agent-and-boot-loader
+---------------------------------------------------------------------------------------------------------------------------------
+Download AzFiles Hybrid Module:
+https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-ad-ds-enable
+https://github.com/Azure-Samples/azure-files-samples/releases
+
 
 
 
