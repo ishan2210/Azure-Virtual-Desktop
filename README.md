@@ -24,6 +24,20 @@ https://learn.microsoft.com/en-us/azure/virtual-desktop/troubleshoot-agent#step-
 Download AzFiles Hybrid Module:
 https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-ad-ds-enable
 https://github.com/Azure-Samples/azure-files-samples/releases
+------------------------------------------------------------------------------------------------------------------------------------
+MSRD Collect Tool for Troubleshooting AVD Issues
+MSRD-Collect
+Please download the latest MSRD-Collect tool from  https://aka.ms/MSRD-Collect
+Copy the file to the affected machine and extract the content into a folder such as C:\MSDATA
+While logged in on the affected machine, open an elevated PowerShell console, go to the folder with the script and execute:
+ 
+.\MSRD-Collect.ps1
+ 
+Confirm if you accept the EULA and if you agree with the data collection
+If update is suggested, download the update and use that version. (if so, follow above steps again with new version)
+Select the desired data collection scenario. (AVD + Target + Profiles +)
+Wait until the script finishes collecting all data.
+The script will automatically archive the collected data into a .zip file located in the C:\MSDATA folder. Please upload this .zip file to the workspace. You can also review the contents of the .zip file before uploading it.
 
 
 
